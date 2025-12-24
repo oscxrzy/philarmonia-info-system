@@ -1,1 +1,0 @@
-# philarmonia-info-system

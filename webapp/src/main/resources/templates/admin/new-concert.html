@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Добавить концерт</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <header>
+        <h1>Добавление нового концерта</h1>
+        <nav>
+            <a th:href="@{/}">Главная</a>
+            <a th:href="@{/logout}">Выйти</a>
+        </nav>
+    </header>
+    <main>
+        <form th:action="@{/admin/new-concert}" th:object="${concert}" method="post">
+            <div>
+                <label for="title">Название:</label>
+                <input type="text" id="title" th:field="*{title}" />
+            </div>
+            <div>
+                <label for="description">Описание:</label>
+                <textarea id="description" th:field="*{description}"></textarea>
+            </div>
+            <div>
+                <label for="date">Дата:</label>
+                <input type="datetime-local" id="date" th:field="*{date}" />
+            </div>
+            <!-- For simplicity we omit hall and artist selection; in a full application you would provide drop-downs here -->
+            <button type="submit">Сохранить</button>
+        </form>
+    </main>
+    <footer>
+        <p>© Филармония, 2025</p>
+    </footer>
+</body>
+</html>

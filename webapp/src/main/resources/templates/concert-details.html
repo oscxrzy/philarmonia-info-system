@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="${concert.title}">Детали концерта</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <header>
+        <h1 th:text="${concert.title}">Название концерта</h1>
+        <nav>
+            <a th:href="@{/}">Главная</a>
+            <span th:if="${#httpServletRequest.remoteUser == null}">
+                <a th:href="@{/login}">Войти</a>
+            </span>
+            <span th:if="${#httpServletRequest.remoteUser != null}">
+                <a th:href="@{/admin/new-concert}" th:if="${#authorization.expression('hasRole(\'ADMIN\')')}">Добавить концерт</a>
+                <a th:href="@{/logout}">Выйти</a>
+            </span>
+        </nav>
+    </header>
+    <main>
+        <p><strong>Описание:</strong> <span th:text="${concert.description}">Описание концерта...</span></p>
+        <p><strong>Дата:</strong> <span th:text="${concert.date}">Дата</span></p>
+        <p><strong>Зал:</strong> <span th:text="${concert.hall != null ? concert.hall.name : 'Не указан'}"></span></p>
+        <a th:href="@{/}">Вернуться к афише</a>
+    </main>
+    <footer>
+        <p>© Филармония, 2025</p>
+    </footer>
+</body>
+</html>
